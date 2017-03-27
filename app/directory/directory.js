@@ -24,17 +24,20 @@ angular.module('directory', ['directory.list','directory.superhero'
 
             var searchCtrl = this; 
             searchCtrl.value = $stateParams.search;
+          
             searchCtrl.search = function() {
 
                 $state.go('marvel.directory', {
-                        search: searchCtrl.value
+                        search: searchCtrl.value,
+                        limit:null,
+                        offset:null
                     })
             }
 
-            console.log("exec");
+            
             
             $scope.$on('eventName', function (event, args) {
-                console.log("herreee");
+           
                 $scope.message = args.message;
                 console.log($scope.message);
                 });

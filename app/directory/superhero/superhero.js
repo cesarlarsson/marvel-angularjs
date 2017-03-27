@@ -1,5 +1,6 @@
     angular.module('directory.superhero', [
-        'marvel.models.superheroes'])
+        'marvel.models.superheroes',
+        'marvel.services.path'])
         .config(function ($stateProvider) {
         $stateProvider
             .state('marvel.superhero', {
@@ -23,7 +24,7 @@
             })
         ;
     })
-    .controller('SuperHeroCtrl', function ($state, $stateParams, SuperHeroesModel) {
+    .controller('SuperHeroCtrl', function ($state, $stateParams, SuperHeroesModel, SuperHeroesService) {
         var superHeroCtrl = this; 
         var idHero = $stateParams.idhero;
         var SuperHeroes = SuperHeroesModel.getCharacter(idHero).
@@ -32,7 +33,15 @@
                 superHeroCtrl.superhero = superhero.results[0];
             });
         function goBack(){
-            $state.go('marvel.directory')
+
+            if(SuperHeroesService.lastState!= undefined){
+
+                $state.go(SuperHeroesService.lastState,{'limit':SuperHeroesService.limit,
+                'offset':SuperHeroesService.offset,'search':SuperHeroesService.search});
+            } else {
+  
+                $state.go('marvel.directory');
+            }
         }
 
         superHeroCtrl.goBack = goBack;

@@ -10,7 +10,8 @@ total: <strong>{{ctrl.total}}</strong> | page: <strong>{{ctrl.pages}}</strong>
     </li>
     
     <li ng-repeat="n in ctrl.range(0,ctrl.pages)">
-        <a ui-sref="marvel.directory({limit:ctrl.limit,offset:n})">{{n+1}}</a>
+       <a ng-click="ctrl.goTo(ctrl.limit,n)">{{n+1}}</a>
+       <!-- <a ui-sref="marvel.directory({limit:ctrl.limit,offset:n})" >{{n+1}}</a>-->
         </li>
     <li>
       <a href="#" aria-label="Next">

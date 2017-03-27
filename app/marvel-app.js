@@ -12,21 +12,13 @@ angular.module('marvelApp', [
         ;
         $urlRouterProvider.otherwise('/');
     }).controller('MainCtrl', function ($scope, $state) {
-        console.log("hey");
+
         var mainctrl = this;
 
         $scope.testclick = function() {
 
                 console.log("send event");
-                $scope.$broadcast('eventName', { message: "asdasd" });
-            }
-
-        var testclickfn =  function(){
-
-            $scope.$broadcast('eventName', { message: "asdasd" });
-        }
-
-
-        
+                $scope.$broadcast('eventName', { message: "test message" });
+            };        
         
     });

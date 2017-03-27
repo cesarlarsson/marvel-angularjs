@@ -1,16 +1,22 @@
 
 angular.module('directory.list', [
     'marvel.models.superheroes',
-    'directory.list.pagination'
+    'directory.list.pagination',
+   'marvel.services.path'
     ])
 
-.controller('ListResultCtrl', ['$stateParams', 'SuperHeroesModel','$scope' ,
-function ($stateParams, SuperHeroesModel,$scope) {
+.controller('ListResultCtrl', ['$state','$stateParams', 'SuperHeroesModel','$scope','SuperHeroesService',
+function ($state, $stateParams, SuperHeroesModel,$scope,SuperHeroesService) {
 
         var listResultCtrl = this;
         var limit = $stateParams.limit;
         var offset = $stateParams.offset;
         var search = $stateParams.search;
+        //save the information of the current lsit view
+        SuperHeroesService.lastState = $state.current.name;
+        SuperHeroesService.limit =  $stateParams.limit;
+        SuperHeroesService.offset =  $stateParams.offset;
+        SuperHeroesService.search =  $stateParams.search;
 
             SuperHeroesModel.getCharacters(limit, offset, search).
                 then( function (superheroes) {
