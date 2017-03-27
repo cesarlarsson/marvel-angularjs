@@ -1,0 +1,47 @@
+<!doctype html>
+<html ng-app="marvelApp">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Marvel Character Directory</title>
+
+        <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Marvel:400,700');
+        </style>
+        <link rel="stylesheet" href="assets/css/marvel.css">
+    </head>
+    <body ng-controller="MainCtrl as mainctrl">
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                <img src="assets/img/marvel.svg" width="200px" class="logo" />
+                <H1>Marvel Super Heroes Directory</H1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2" ui-view="search"></div>
+            </div>
+            <div class="row">
+            
+                <div class="col-sm-8 col-sm-offset-2 main" ui-view="list">
+                 
+                </div>
+            </div>
+             <button ng-click="testclick()" class="btn btn-sm">test brodcast ;-)</button>
+        </div>
+
+        <script src="vendors/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="vendors/angular/angular.min.js"></script>
+        <script src="vendors/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="app/marvel-app.js"></script>
+        <script src="app/directory/directory.js"></script>
+        <script src="app/directory/list/list.js"></script>
+         <script src="app/directory/list/pagination/pagination.js"></script>
+        <script src="app/directory/superhero/superhero.js"></script>
+        <script src="app/common/models/superheroes-model.js"></script>
+
+    </body>
+</html>

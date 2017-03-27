@@ -1,0 +1,26 @@
+<h3> Super Heroes </h3>
+<div class="row">
+    <div class="col-sm-5 superhero" ng-repeat="superhero in listResultCtrl.superheroes" >
+        <div class="row">
+            <div class="col-sm-4">
+                <img ng-src="{{superhero.thumbnail.path}}.{{superhero.thumbnail.extension}}" class="img-thumbnail" width="100px" >
+            </div>
+            <div class="col-sm-8">
+                    <h3>{{superhero.name}}</h3><br>
+                    <button type="button" class="btn btn-default"
+                    ui-sref="marvel.superhero({idhero:superhero.id})" data-id="{{superhero.id}}">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        View Details 
+                    </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-if="!listResultCtrl.superheroes">
+Loaging...
+</div>
+<hr/>
+
+<paginator pages="listResultCtrl.offset" limit="listResultCtrl.limit" total="listResultCtrl.total"
+ng-if="listResultCtrl.total>0"
+></paginator>
