@@ -1,3 +1,5 @@
+require("./list/list");
+require("./superhero/superhero");
 angular.module('directory', ['directory.list','directory.superhero'
 ]).config(function ($stateProvider) {
         $stateProvider

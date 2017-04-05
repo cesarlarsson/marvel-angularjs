@@ -1,3 +1,11 @@
+"use strict";
+var angular = require('angular');
+ require('angular-ui-router');
+ require('./directory/directory');
+
+var bulk = require('bulk-require');
+bulk(__dirname, [ 'common/**/*.js' ]);
+
 angular.module('marvelApp', [
     'ui.router',
     'directory'

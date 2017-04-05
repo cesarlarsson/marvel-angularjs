@@ -1,4 +1,5 @@
 
+require("./pagination/pagination");
 angular.module('directory.list', [
     'marvel.models.superheroes',
     'directory.list.pagination',

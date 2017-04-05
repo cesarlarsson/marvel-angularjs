@@ -1,3 +1,4 @@
+
     angular.module('directory.superhero', [
         'marvel.models.superheroes',
         'marvel.services.path'])
