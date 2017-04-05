@@ -1,0 +1,21 @@
+
+<h3> Character Information</h3>
+<div class="row superhero-info">
+    <div class="col-sm-12 col-md-4 image">
+        <img ng-src="{{superHeroCtrl.superhero.thumbnail.path}}.{{superHeroCtrl.superhero.thumbnail.extension}}"
+       width="100%" max-width="200px" class="img-thumbnail" alt="{{superHeroCtrl.superhero.name}}" title="{{superHeroCtrl.superhero.name}}" >
+    </div>
+    <div class="col-sm-12 col-md-8 ">
+        <h3>{{superHeroCtrl.superhero.name}}</h3>
+        <p><strong>Description: </strong><br>
+            {{superHeroCtrl.superhero.description}}</p>
+        <p><strong>Links: </strong><br>
+            <span ng-repeat="url in superHeroCtrl.superhero.urls">
+                <a href="{{url.url}}" target="_blank" >{{url.type}}</a><br>
+            </span>
+            </p>
+
+    </div>
+    
+</div>
+ <button type="button" class="btn btn-default btn-lg pull-right" ng-click="superHeroCtrl.goBack()">Back</button>

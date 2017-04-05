@@ -1,0 +1,22 @@
+
+total: <strong>{{ctrl.total}}</strong> | page: <strong>{{ctrl.pages}}</strong>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    
+    <li ng-repeat="n in ctrl.range(0,ctrl.pages)">
+       <a ng-click="ctrl.goTo(ctrl.limit,n)">{{n+1}}</a>
+       <!-- <a ui-sref="marvel.directory({limit:ctrl.limit,offset:n})" >{{n+1}}</a>-->
+        </li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

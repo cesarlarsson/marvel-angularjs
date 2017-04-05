@@ -42,9 +42,7 @@ a:hover {
 }
 
 .superhero .img-thumbnail{
-    margin: 0 auto;
-    margin: 30px;
-    
+    margin: 0 auto;    
     text-align: center
 
 }
@@ -54,8 +52,9 @@ a:hover {
 
 }
 
-.superhero-info .image{
-    text-align: center
+.image{
+    text-align: center;
+    margin-top: 30px;
 
 }
 .superhero-info strong{
