@@ -4,7 +4,7 @@ var angular = require('angular');
  require('./directory/directory');
 
 var bulk = require('bulk-require');
-bulk(__dirname, [ 'common/**/*.js' ]);
+bulk(__dirname, [ 'common/services/*.js','common/models/superheroes-model.js' ]);
 
 angular.module('marvelApp', [
     'ui.router',

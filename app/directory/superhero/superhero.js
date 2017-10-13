@@ -25,11 +25,12 @@
             })
         ;
     })
-    .controller('SuperHeroCtrl', function ($state, $stateParams) {
-/*         var superHeroCtrl = this; 
+    .controller('SuperHeroCtrl', function ($state, $stateParams, SuperHeroesModel, SuperHeroesService) {
+        var superHeroCtrl = this; 
         var idHero = $stateParams.idhero;
         var SuperHeroes = SuperHeroesModel.getCharacter(idHero).
             then( function (superhero) {
+                console.log(superhero);
                 superHeroCtrl.superhero = superhero.results[0];
             });
         function goBack(){
@@ -44,6 +45,6 @@
             }
         }
 
-        superHeroCtrl.goBack = goBack; */
+        superHeroCtrl.goBack = goBack;
    
     });

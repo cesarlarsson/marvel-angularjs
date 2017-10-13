@@ -4,7 +4,7 @@ angular.module('marvel.models.superheroes', [
 ])
     .service('SuperHeroesModel', ["$http", "$q", function ($http, $q) {
         var publicKey= "e595fc809950c5ada7424f31ec9c5c2f";
-
+        var apiKey = "2de143494c0b295cca9337e1e96b00e0";
         var model = this,
             URLS = {
                 characters:'https://gateway.marvel.com/v1/public/characters',
@@ -50,6 +50,54 @@ angular.module('marvel.models.superheroes', [
                 });;
 
         }
+
+        model.getCharacterTest = function(idhero){
+        
+            return $http.get(URLS.characters).then(function successCallback(response) {
+                
+                    return response.data.data;
+
+                    // this callback will be called asynchronously
+                    // when the response is available
+                }, function errorCallback(response) {
+                    
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });;
+
+        }
+
+        model.getCharacterTest2 = function(idhero){
+            
+                        return $http.get(URLS.characters+"/"+idhero,{
+                            params: {
+                            apikey: publicKey
+
+                            }
+                            }).then(function successCallback(response) {
+                            
+                                return response.data.data;
+            
+                                // this callback will be called asynchronously
+                                // when the response is available
+                            }, function errorCallback(response) {
+                              
+                                // called asynchronously if an error occurs
+                                // or server returns response with an error status.
+                            });; 
+/*                             return $http.get(URLS.characters+"?apikey="+publicKey).then(function successCallback(response) {
+                                
+                                    return response.data.data;
+                
+                                    // this callback will be called asynchronously
+                                    // when the response is available
+                                }, function errorCallback(response) {
+                                  
+                                    // called asynchronously if an error occurs
+                                    // or server returns response with an error status.
+                                });;  */
+            
+                    }
     }]);
 },{}],2:[function(require,module,exports){
 angular.module('marvel.services.path', [
@@ -121,8 +169,13 @@ angular.module('directory.list', [
    'marvel.services.path'
     ])
 
-.controller('ListResultCtrl', ['$state','$stateParams', 'SuperHeroesModel','$scope','SuperHeroesService',
-function ($state, $stateParams, SuperHeroesModel,$scope,SuperHeroesService) {
+.controller('ListResultCtrl', ['$state','$stateParams', 'SuperHeroesModel','$scope','SuperHeroesService', '$http',
+function ($state, $stateParams, SuperHeroesModel,$scope,SuperHeroesService, $http) {
+
+
+        //borrar
+        $scope.title = "Testing AngularJS Applications";
+        $scope.apiKey = "2de143494c0b295cca9337e1e96b00e0";
 
         var listResultCtrl = this;
         var limit = $stateParams.limit;
@@ -134,17 +187,14 @@ function ($state, $stateParams, SuperHeroesModel,$scope,SuperHeroesService) {
         SuperHeroesService.offset =  $stateParams.offset;
         SuperHeroesService.search =  $stateParams.search;
 
-            SuperHeroesModel.getCharacters(limit, offset, search).
-                then( function (superheroes) {
-                
-                    listResultCtrl.superheroes = superheroes.results;
-                    listResultCtrl.total = superheroes.total;
-                    listResultCtrl.limit = superheroes.limit;
-                    listResultCtrl.count = superheroes.count;
-                    listResultCtrl.offset = superheroes.offset;
-
-                    
-                });
+        SuperHeroesModel.getCharacters(limit, offset, search).
+            then( function (superheroes) {
+              listResultCtrl.superheroes = superheroes.results;
+              listResultCtrl.total = superheroes.total;
+              listResultCtrl.limit = superheroes.limit;
+              listResultCtrl.count = superheroes.count;
+              listResultCtrl.offset = superheroes.offset;
+            });
 
     }])
 
@@ -246,7 +296,7 @@ var angular = require('angular');
  require('./directory/directory');
 
 
-({"common":({"models":({"superheroes-model":require("./common/models/superheroes-model.js")}),"services":({"superheroes-path":require("./common/services/superheroes-path.js")})})});
+({"common":({"services":({"superheroes-path":require("./common/services/superheroes-path.js")}),"models":({"superheroes-model":require("./common/models/superheroes-model.js")})})});
 
 angular.module('marvelApp', [
     'ui.router',

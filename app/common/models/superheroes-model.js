@@ -3,7 +3,7 @@ angular.module('marvel.models.superheroes', [
 ])
     .service('SuperHeroesModel', function ($http, $q) {
         var publicKey= "e595fc809950c5ada7424f31ec9c5c2f";
-
+        var apiKey = "2de143494c0b295cca9337e1e96b00e0";
         var model = this,
             URLS = {
                 characters:'https://gateway.marvel.com/v1/public/characters',
@@ -30,23 +30,27 @@ angular.module('marvel.models.superheroes', [
                 });;
         };
 
-        model.getCharacter = function(idhero,limit,offset){
+          model.getCharacter = function(idhero){
 
             return $http.get(URLS.characters+"/"+idhero,{
                 params: {
-                apikey: publicKey
+                    apikey: publicKey
                 }
                 }).then(function successCallback(response) {
-                
+                    //console.log("answer");
+                    console.log(response.data.data.code);
                     return response.data.data;
 
                     // this callback will be called asynchronously
                     // when the response is available
                 }, function errorCallback(response) {
-                  
+                    console.log("hey");
+                    return response;
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
-                });;
+                });
 
-        }
+        }  
+
     });
+

@@ -32,7 +32,8 @@ module.exports = function(config) {
         './app/directory/list/pagination/pagination.js',
         './app/directory/superhero/superhero.js',
         './app/directory/superhero/superhero.test.js',
-        './app/common/models/superheroes-model.test.js'
+        './app/common/models/superheroes-model.test.js',
+        './app/directory/list/list.test.js'
         
       ],
   
