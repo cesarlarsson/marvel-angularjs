@@ -25,80 +25,32 @@ angular.module('marvel.models.superheroes', [
                     // this callback will be called asynchronously
                     // when the response is available
                 }, function errorCallback(response) {
-                    console.log(response);
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
                 });;
         };
 
-        model.getCharacter = function(idhero,limit,offset){
+          model.getCharacter = function(idhero){
 
             return $http.get(URLS.characters+"/"+idhero,{
                 params: {
-                apikey: publicKey
+                    apikey: publicKey
                 }
                 }).then(function successCallback(response) {
-                
                     return response.data.data;
-
                     // this callback will be called asynchronously
                     // when the response is available
                 }, function errorCallback(response) {
-                  
+                    return response;
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
-                });;
+                });
 
-        }
+        }  
 
-        model.getCharacterTest = function(idhero){
-        
-            return $http.get(URLS.characters).then(function successCallback(response) {
-                
-                    return response.data.data;
-
-                    // this callback will be called asynchronously
-                    // when the response is available
-                }, function errorCallback(response) {
-                    
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                });;
-
-        }
-
-        model.getCharacterTest2 = function(idhero){
-            
-                        return $http.get(URLS.characters+"/"+idhero,{
-                            params: {
-                            apikey: publicKey
-
-                            }
-                            }).then(function successCallback(response) {
-                            
-                                return response.data.data;
-            
-                                // this callback will be called asynchronously
-                                // when the response is available
-                            }, function errorCallback(response) {
-                              
-                                // called asynchronously if an error occurs
-                                // or server returns response with an error status.
-                            });; 
-/*                             return $http.get(URLS.characters+"?apikey="+publicKey).then(function successCallback(response) {
-                                
-                                    return response.data.data;
-                
-                                    // this callback will be called asynchronously
-                                    // when the response is available
-                                }, function errorCallback(response) {
-                                  
-                                    // called asynchronously if an error occurs
-                                    // or server returns response with an error status.
-                                });;  */
-            
-                    }
     }]);
+
+
 },{}],2:[function(require,module,exports){
 angular.module('marvel.services.path', [
 
@@ -172,7 +124,6 @@ angular.module('directory.list', [
 .controller('ListResultCtrl', ['$state','$stateParams', 'SuperHeroesModel','$scope','SuperHeroesService', '$http',
 function ($state, $stateParams, SuperHeroesModel,$scope,SuperHeroesService, $http) {
 
-
         //borrar
         $scope.title = "Testing AngularJS Applications";
         $scope.apiKey = "2de143494c0b295cca9337e1e96b00e0";
@@ -186,6 +137,7 @@ function ($state, $stateParams, SuperHeroesModel,$scope,SuperHeroesService, $htt
         SuperHeroesService.limit =  $stateParams.limit;
         SuperHeroesService.offset =  $stateParams.offset;
         SuperHeroesService.search =  $stateParams.search;
+
 
         SuperHeroesModel.getCharacters(limit, offset, search).
             then( function (superheroes) {

@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var serve = require('gulp-serve');
-var  browserify = require('browserify');
+var browserify = require('browserify');
 var buffer     = require('vinyl-buffer');
 var source = require('vinyl-source-stream');
 var sourceMaps = require('gulp-sourcemaps'); //create the sourcemaps file
@@ -9,8 +9,9 @@ var uglify = require('gulp-uglify'); //Uglify JS
 var bulkify = require('bulkify'); //require files in a folder(s)
 var concatCss = require('gulp-concat-css'); //concat css files
 var del = require('del'); //Delete files on a folder 
-
+var sass = require('gulp-sass');
 var css =require('gulp-clean-css'); 
+var watch = require('gulp-watch');
 
 var config = {
     js: {
@@ -69,6 +70,13 @@ gulp.task("styles",["clean:styles"],function(){
  
 });
 
+gulp.task("sass",function(){
+    gulp.src("./assets/css/*.scss")
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./assets/css'));
+
+})
+
 
 gulp.task("test",function(){
  gulp.src("dist/css/bundle.css")
@@ -86,3 +94,8 @@ gulp.task("testjs",function(){
     .pipe(gulp.dest('dist/'));
 
 });
+
+
+gulp.task('watch', function() {
+    gulp.watch(['./assets/css/*.scss','./app/**/*.js'], ['sass','styles','bundle']);
+  });

@@ -24,7 +24,6 @@ angular.module('marvel.models.superheroes', [
                     // this callback will be called asynchronously
                     // when the response is available
                 }, function errorCallback(response) {
-                    console.log(response);
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
                 });;
@@ -37,14 +36,10 @@ angular.module('marvel.models.superheroes', [
                     apikey: publicKey
                 }
                 }).then(function successCallback(response) {
-                    //console.log("answer");
-                    console.log(response.data.data.code);
                     return response.data.data;
-
                     // this callback will be called asynchronously
                     // when the response is available
                 }, function errorCallback(response) {
-                    console.log("hey");
                     return response;
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
