@@ -1,3 +1,5 @@
+
+
 angular.module('directory.list.pagination', ['marvel.services.path'])
 .component('paginator', {
   templateUrl:  'app/directory/list/pagination/pagination.tmpl.html',
